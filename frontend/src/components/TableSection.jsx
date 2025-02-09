@@ -146,14 +146,16 @@ const TableSection = ({ title, hasStock }) => {
                     Edit
                   </button>
                   <button
-                    className="bg-red-200 text-red-700 px-3 rounded-md"
-                    onClick={() => {
-                      const id = item._id; // Get the ID of the item to delete
-                      deleteEntry(title.toLowerCase(), id); // Call deleteEntry with the type and the item ID
-                    }}
-                  >
-                    Delete
-                  </button>
+  className="bg-red-200 text-red-700 px-3 rounded-md"
+  onClick={() => {
+    if (window.confirm(`Are you sure you want to delete ${item.name}?`)) {
+      deleteEntry(title.toLowerCase(), item._id);
+    }
+  }}
+>
+  Delete
+</button>
+
                 </td>
               </tr>
             ))}
