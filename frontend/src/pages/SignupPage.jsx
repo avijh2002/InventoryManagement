@@ -41,9 +41,9 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center md:flex-row min-h-screen px-6">
+    <div className="flex h-screen">
       {/* Left Section (Form) */}
-      <div className="w-full md:w-3/5 flex flex-col justify-center items-center bg-white">
+      <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 bg-white">
         <span className="text-red-600 ml-2">
           <img src={logo} alt="Logo" className="h-20 object-contain" />
         </span>
@@ -134,7 +134,7 @@ const SignupPage = () => {
 
       {/* Right Section (Image) */}
       <div className="hidden md:flex w-2/5 justify-center items-center bg-cover bg-center" style={{ backgroundImage: `url(${authpic})` }}>
-              <img src={authpic} alt="Auth" className="w-80 h-auto object-cover" />
+              
             </div>
     </div>
   );

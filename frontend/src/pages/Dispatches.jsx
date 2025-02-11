@@ -52,7 +52,7 @@ const Dispatches = () => {
         <h1 className="text-2xl font-bold">All Dispatches</h1>
       </div>
       <div className="w-full max-w-4xl flex flex-wrap justify-between items-center mb-4 gap-2">
-        <div className="w-full sm:w-1/2 flex h-10 rounded-lg bg-white shadow-sm">
+        <div className="w-full sm:w-1/3 flex h-10 rounded-lg bg-white shadow-sm">
           <input
             type="text"
             placeholder="Search Here .."

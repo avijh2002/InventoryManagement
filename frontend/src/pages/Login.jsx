@@ -101,7 +101,7 @@ const Login = () => {
 
       {/* Right Section */}
       <div className="hidden md:flex w-2/5 justify-center items-center bg-cover bg-center" style={{ backgroundImage: `url(${authpic})` }}>
-        <img src={authpic} alt="Auth" className="w-80 h-auto object-cover" />
+        
       </div>
     </div>
   );

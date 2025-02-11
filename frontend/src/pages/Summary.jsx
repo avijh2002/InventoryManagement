@@ -56,25 +56,27 @@ const Summary = () => {
   return (
     <div className="p-4 md:p-6 bg-gray-100 min-h-screen flex flex-col items-center">
       {/* Heading */}
-      <div className="w-full max-w-2xl text-center mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold">Summary Table</h1>
+      <div className="w-full max-w-4xl text-center mb-4 sm:text-left">
+        <h1 className="text-2xl sm:text-3xl font-bold">Summary Table</h1>
         <p className="text-gray-500">For all Qualities</p>
       </div>
 
       {/* Search Bar */}
-      <div className="w-full max-w-2xl flex justify-center sm:justify-between items-center mb-4">
-        <div className="w-full sm:w-1/3 flex items-center bg-white shadow rounded-lg px-4">
+      <div className="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center mb-4">
+        <div className="w-full sm:w-1/3 flex h-10 rounded-lg bg-white shadow">
           <input
             type="text"
             placeholder="Search Here .."
-            className="w-full py-2 border-none text-gray-600 focus:outline-none"
+            className="w-full pl-5 border-none outline-none"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
+              setCurrentPage(1); // Reset pagination on search
             }}
           />
-          <Search className="text-gray-400" />
+          <div className="h-full flex items-center pr-4">
+            <Search className="text-gray-400" />
+          </div>
         </div>
       </div>
 
