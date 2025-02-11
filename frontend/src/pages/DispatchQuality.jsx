@@ -66,20 +66,20 @@ const DispatchQuality = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-full md:max-w-4xl flex flex-wrap justify-between items-center mb-4">
-        <div className="w-full md:w-1/3 flex h-10 rounded-lg bg-white">
+      <div className="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center mb-4">
+        <div className="w-full sm:w-1/3 flex h-10 rounded-lg bg-white shadow">
           <input
             type="text"
             placeholder="Search Here .."
-            className="w-full pl-4 pr-10 border-none text-sm md:text-base"
+            className="w-full pl-5 border-none outline-none"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1);
+              setCurrentPage(1); // Reset pagination on search
             }}
           />
-          <div className="absolute right-3 h-full flex items-center">
-            <Search className="text-gray-400 w-5 h-5" />
+          <div className="h-full flex items-center pr-4">
+            <Search className="text-gray-400" />
           </div>
         </div>
       </div>

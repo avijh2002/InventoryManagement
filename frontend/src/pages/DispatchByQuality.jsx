@@ -64,19 +64,19 @@ const DispatchByQuality = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="w-full max-w-4xl flex justify-center items-center mb-4">
-        <div className="w-full md:w-2/3 flex h-10 rounded-lg bg-white border border-gray-300 px-3">
+      <div className="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center mb-4">
+        <div className="w-full sm:w-1/3 flex h-10 rounded-lg bg-white shadow">
           <input
             type="text"
             placeholder="Search Here .."
-            className="w-full border-none focus:outline-none text-sm md:text-base"
+            className="w-full pl-5 border-none outline-none"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1);
+              setCurrentPage(1); // Reset pagination on search
             }}
           />
-          <div className="h-full flex items-center">
+          <div className="h-full flex items-center pr-4">
             <Search className="text-gray-400" />
           </div>
         </div>
