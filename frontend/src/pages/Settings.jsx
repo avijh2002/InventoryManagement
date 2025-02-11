@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Loader } from "lucide-react";
 import { useSettingStore } from '../store/useSettingStore.js';
 import TableSection from "../components/TableSection";
 import "@fontsource/inter"; 
@@ -11,7 +12,9 @@ const Settings = () => {
   }, [fetchSettingsData]);
 
   if (loading) {
-    return <div className="p-4 md:p-8">Loading...</div>;
+    <div className="flex items-center justify-center h-screen">
+      <Loader className="size-10 animate-spin" />
+    </div>
   }
 
   if (error) {

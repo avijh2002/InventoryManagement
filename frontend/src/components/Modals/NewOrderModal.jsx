@@ -76,7 +76,7 @@ const NewOrderModal = ({ openOrderModal, onClose }) => {
   };
 
   return (
-    <div className={`fixed inset-0 flex items-center justify-center bg-[#00000055] ${openOrderModal ? "" : "hidden"} z-50 overflow-y-auto px-4 sm:px-6`}>      
+    <div className={`fixed inset-0 flex items-center justify-center bg-[#00000055] ${openOrderModal ? "" : "hidden"} z-50 overflow-y-auto px-4 sm:p-6`}>      
       <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl bg-white rounded-xl shadow-lg p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="font-bold text-xl md:text-2xl">Create new Order</h2>
@@ -138,12 +138,14 @@ const NewOrderModal = ({ openOrderModal, onClose }) => {
             <label className="text-sm font-medium">Remark</label>
             <textarea name="remark" value={formData.remark} onChange={handleChange} className="w-full px-3 py-2 border rounded-md"></textarea>
           </div>
-          <button type="button" onClick={handleClose} className="w-full md:w-auto px-4 py-2 text-[#C0282E] border border-gray-300 rounded-md">
+          <div className="flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3 mt-4">
+            <button type="button" onClick={handleClose} className="w-full md:w-auto px-4 py-2 text-[#C0282E] border border-gray-300 rounded-md">
               Cancel
             </button>
             <button type="submit" onClick={handleSubmit} className="w-full md:w-auto px-4 py-2 bg-[#C0282E] text-white rounded-md hover:bg-red-600">
               Create
             </button>
+          </div>
         </form>
       </div>
     </div>

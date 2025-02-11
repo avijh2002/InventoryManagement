@@ -76,7 +76,6 @@ export const getOrders = async (req, res) => {
     const orders = await Order.find().populate(
       "agent firm transport quality"
     );
-console.log("hehey")
     const formattedOrders = orders.map((order) => ({
       _id: order._id,
       agent: order.agent?.name || "Unknown Agent",

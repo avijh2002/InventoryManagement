@@ -4,7 +4,7 @@ import { formatDate } from "../../lib/utils.js";
 import toast from "react-hot-toast";
 
 const UpdateOrderModal = ({ orderId, onClose }) => {
-  const { updateOrder, fetchOrderData, quality, agent, firm, transport, getPendingOrderById } = useOrderStore();
+  const { updateOrder, fetchOrderData, quality, agent, firm, transport, getPendingOrderById,getAllOrders } = useOrderStore();
   const [formData, setFormData] = useState({
     selectedQuality: "",
     selectedAgent: "",
@@ -61,6 +61,7 @@ const UpdateOrderModal = ({ orderId, onClose }) => {
       return;
     }
     await updateOrder(orderId, formData);
+    await getAllOrders();
     handleClose();
   };
 
