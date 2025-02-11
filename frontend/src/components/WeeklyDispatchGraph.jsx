@@ -11,7 +11,7 @@ const WeeklyDispatchGraph = () => {
   useEffect(() => {
     getWeeklyDispatchSummary();
   }, [getWeeklyDispatchSummary]);
-
+console.log(weeklyDispatchSummary)
   const chartData = {
     labels: weeklyDispatchSummary.map((item) => item.day), 
     datasets: [

@@ -326,31 +326,62 @@ export const dispatchOrder = async (req, res) => {
 
 
 
-export const getDispachSummary = async (req, res) => {
+
+
+export const getDispatchSummary = async (req, res) => {
   try {
     const pastWeek = new Date();
-    pastWeek.setDate(pastWeek.getDate() - 7);
+    pastWeek.setUTCDate(pastWeek.getUTCDate() - 7); // Get last 7 days
+    pastWeek.setUTCHours(0, 0, 0, 0); // Ensure time starts at 00:00:00 UTC
 
     const summary = await Order.aggregate([
       { $unwind: "$dispatches" },
-      { $match: { "dispatches.dispatchDate": { $gte: pastWeek } } },
+      { 
+        $match: { 
+          "dispatches.dispatchDate": { $gte: pastWeek } 
+        } 
+      },
       {
         $group: {
           _id: {
-            $dayOfWeek: "$dispatches.dispatchDate", 
+            $dateToString: { format: "%Y-%m-%d", date: "$dispatches.dispatchDate" } // Group by date
           },
           count: { $sum: 1 },
         },
       },
-      { $sort: { _id: 1 } },
+      { $sort: { _id: 1 } }, // Sort by date (ascending order)
     ]);
 
+    // Generate last 7 days' dates and map to day names
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    res.json(summary.map(entry => ({ day: dayMap[entry._id - 1], count: entry.count })));
+    const last7Days = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setUTCDate(date.getUTCDate() - i);
+      date.setUTCHours(0, 0, 0, 0);
+
+      const dateStr = date.toISOString().split("T")[0]; // Format: YYYY-MM-DD
+      const dayName = dayMap[date.getUTCDay()]; // Get the day name
+
+      last7Days.push({ date: dateStr, day: dayName });
+    }
+
+    // Fill missing days with count = 0
+    const result = last7Days.map(({ date, day }) => {
+      const entry = summary.find(item => item._id === date);
+      return { day, count: entry ? entry.count : 0 };
+    });
+
+    res.json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching dispatch summary:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 import express from "express";
 import {
     createOrder,getDispatchedOrders,getOrderById,getOrders,getOrdersByFirmIdAndStatus,getOrdersByQualityIdAndStatus,getPendingOrders,dispatchOrder,
-    getDispachSummary,updateOrder
+    getDispatchSummary,updateOrder
   } from "../controllers/order.controllers.js";
 
 
@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", getOrders);
 router.get("/pending", getPendingOrders);
 router.get("/dispatched", getDispatchedOrders);
-router.get("/dispatch-summary",getDispachSummary)
+router.get("/dispatch-summary",getDispatchSummary)
 router.get("/:id",getOrderById)
 router.get("/quality/:status/:id",getOrdersByQualityIdAndStatus)
 router.get("/firm/:status/:id",getOrdersByFirmIdAndStatus)
