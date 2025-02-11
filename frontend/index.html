@@ -4,6 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Force Light Mode -->
+    <meta name="color-scheme" content="light">
+    
+    <style>
+      /* Prevent dark mode styles */
+      :root {
+        color-scheme: light !important;
+      }
+
+      /* Ensure the background and text colors remain light-themed */
+      body {
+        background-color: white !important;
+        color: black !important;
+      }
+
+      /* Override any automatic dark mode settings */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: white !important;
+          color: black !important;
+        }
+      }
+    </style>
+
     <title>HG-inventory</title>
   </head>
   <body>

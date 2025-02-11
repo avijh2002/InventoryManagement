@@ -43,7 +43,7 @@ const SignupPage = () => {
   return (
     <div className="flex h-screen">
       {/* Left Section (Form) */}
-      <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 bg-white">
+      <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 ">
         <span className="text-red-600 ml-2">
           <img src={logo} alt="Logo" className="h-20 object-contain" />
         </span>
