@@ -331,8 +331,8 @@ export const dispatchOrder = async (req, res) => {
 export const getDispatchSummary = async (req, res) => {
   try {
     const pastWeek = new Date();
-    pastWeek.setUTCDate(pastWeek.getUTCDate() - 7); // Get last 7 days
-    pastWeek.setUTCHours(0, 0, 0, 0); // Ensure time starts at 00:00:00 UTC
+    pastWeek.setUTCDate(pastWeek.getUTCDate() - 7);
+    pastWeek.setUTCHours(0, 0, 0, 0); 
 
     const summary = await Order.aggregate([
       { $unwind: "$dispatches" },
@@ -344,15 +344,14 @@ export const getDispatchSummary = async (req, res) => {
       {
         $group: {
           _id: {
-            $dateToString: { format: "%Y-%m-%d", date: "$dispatches.dispatchDate" } // Group by date
+            $dateToString: { format: "%Y-%m-%d", date: "$dispatches.dispatchDate" } 
           },
           count: { $sum: 1 },
         },
       },
-      { $sort: { _id: 1 } }, // Sort by date (ascending order)
+      { $sort: { _id: 1 } }, 
     ]);
 
-    // Generate last 7 days' dates and map to day names
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const last7Days = [];
 
@@ -361,13 +360,12 @@ export const getDispatchSummary = async (req, res) => {
       date.setUTCDate(date.getUTCDate() - i);
       date.setUTCHours(0, 0, 0, 0);
 
-      const dateStr = date.toISOString().split("T")[0]; // Format: YYYY-MM-DD
-      const dayName = dayMap[date.getUTCDay()]; // Get the day name
+      const dateStr = date.toISOString().split("T")[0]; 
+      const dayName = dayMap[date.getUTCDay()]; 
 
       last7Days.push({ date: dateStr, day: dayName });
     }
 
-    // Fill missing days with count = 0
     const result = last7Days.map(({ date, day }) => {
       const entry = summary.find(item => item._id === date);
       return { day, count: entry ? entry.count : 0 };

@@ -18,7 +18,7 @@ const App = () => {
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
+console.log(authUser)
   return (
     <>
       <Toaster />

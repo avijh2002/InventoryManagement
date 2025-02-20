@@ -26,10 +26,10 @@ export const useAuthStore = create((set) => ({
   checkAuth: async () => {
     try {
       const res = await axiosInstance.get("/auth/check");
+      console.log(res.data)
       set({ authUser: res.data });
     } catch (error) {
       set({ authUser: null });
-      toast.error("Failed to check authentication");
     } finally {
       set({ isCheckingAuth: false });
     }
