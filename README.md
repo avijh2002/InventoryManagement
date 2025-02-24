@@ -1,1 +1,1 @@
-#deployed website link:--->https://inventorymanagement-fynk.onrender.com/
+#deployed website link:--->https://himalayaglobal.store/
